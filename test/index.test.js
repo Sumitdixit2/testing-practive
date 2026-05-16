@@ -8,7 +8,6 @@ describe('Tests the get todos api', () => {
     const id = 1;
     const enpoint = `/api/v1/todo/${id}`;
 
-
     //Act
     const res = await request(app).get(`${enpoint}`);
 
@@ -29,12 +28,13 @@ describe('Tests the get todos api', () => {
     //Arrange
     const enpoint = '/api/v1/todo/createTodo'; 
     const userPayload = {
-      tile: "clean dishes",
+      tile: "clean dishes", //using tile instead of title
       description: "clean the dishes before mom comes back"
     }
 
     //Act
     const res = await request(app).post(`${enpoint}`).send(userPayload);
+    console.log("error is:",res.text);
 
     expect(res.status).toBe(500);
   })

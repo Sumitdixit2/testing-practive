@@ -3,6 +3,7 @@ import express from "express"
 import { pool } from "./db";
 
 const app = express();
+// performing crud operations on todos and testing them
 
 app.get('/api/v1/todo/:id',async(req,res) => {
   try {
@@ -25,7 +26,7 @@ app.post('/api/v1/todo/createTodo', async(req,res) => {
 
     if(!title || !description) throw new Error("title and description are required");
       
-    const res = await pool.query('INSERT INTO todo (title,description) VALUES($1,$2)',[title,description]);
+    const res = await pool.query('INSERT INTO todo (title,description) VALUES($1,$2) RETURNING *',[title,description]);
 
     res.status(201).json({message: "new todo created succesfully",data: res.data});
 
