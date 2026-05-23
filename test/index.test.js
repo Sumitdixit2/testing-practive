@@ -35,7 +35,7 @@ describe('Tests the get todos api', () => {
     //Act
     const res = await request(app).post(`${enpoint}`).send(userPayload);
     console.log("error is:",res.text);
-
+ 
     expect(res.status).toBe(500);
   })
 

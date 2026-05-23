@@ -5,7 +5,7 @@ import { pool } from "./db";
 const app = express();
 // performing crud operations on todos and testing them
 
-app.get('/api/v1/todo/:id',async(req,res) => {
+export const getTodo = async(req,res) => {
   try {
   const {id} = req.params;
   if(!id) throw new Error("id is required");
@@ -18,7 +18,9 @@ app.get('/api/v1/todo/:id',async(req,res) => {
     });
   }
   
-});
+}
+
+app.get('/api/v1/todo/:id',getTodo);
 
 app.post('/api/v1/todo/createTodo', async(req,res) => {
   try {
